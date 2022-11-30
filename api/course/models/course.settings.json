@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "courses",
+  "info": {
+    "name": "course",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "uid": {
+      "type": "biginteger",
+      "unique": true,
+      "required": true
+    },
+    "course_id": {
+      "type": "biginteger"
+    },
+    "time": {
+      "type": "time"
+    },
+    "day": {
+      "type": "enumeration",
+      "enum": [
+        "MON",
+        "TUE",
+        "WED",
+        "THR",
+        "FRI",
+        "SAT",
+        "SUN",
+        "INDEP",
+        "ANY"
+      ]
+    },
+    "instructor": {
+      "type": "string"
+    },
+    "tas": {
+      "type": "string"
+    },
+    "pre_req": {
+      "type": "string"
+    },
+    "credit": {
+      "type": "integer"
+    },
+    "term": {
+      "type": "string"
+    },
+    "course_name": {
+      "type": "string"
+    },
+    "prefix": {
+      "type": "string"
+    },
+    "start_year": {
+      "type": "integer"
+    },
+    "end_year": {
+      "type": "integer"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "ONLINE",
+        "ONCMP"
+      ]
+    }
+  }
+}

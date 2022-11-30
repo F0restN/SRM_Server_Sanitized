@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "templates",
+  "info": {
+    "name": "Templates",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "term": {
+      "type": "string"
+    },
+    "program": {
+      "type": "string"
+    },
+    "courses": {
+      "type": "json"
+    },
+    "year": {
+      "type": "integer"
+    },
+    "student_status": {
+      "type": "enumeration",
+      "enum": [
+        "PT",
+        "FT"
+      ]
+    },
+    "student_type": {
+      "type": "enumeration",
+      "enum": [
+        "ONLINE",
+        "ONCMP"
+      ]
+    }
+  }
+}

@@ -1,0 +1,59 @@
+version: '3.7'
+
+services:
+
+  sample:
+    container_name: sample
+    networks:
+      - nw
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - 1338:1338
+    environment:
+      CHOKIDAR_USEPOLLING: true
+      # - ASPNETCORE_URLS=https://+:1338
+      # - ASPNETCORE_HTTPS_PORT=1338
+      POSTGRES_DB: srm
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: abccba
+      DATABASE_URL: db
+    depends_on:
+      - db
+    links:
+      - "db"
+  
+  db:
+    container_name: db
+    image: postgres:14-alpine
+    networks:
+      - nw
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: srm
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: abccba
+    volumes:
+      - ./db-data/:/var/lib/postgresql/data/
+
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8080:8080
+
+volumes:
+  pgdata1:
+
+networks:
+  # postgres:
+  #   driver: bridge
+  # backend:
+  #     driver: bridge
+  nw:

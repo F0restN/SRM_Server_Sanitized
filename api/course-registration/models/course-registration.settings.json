@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "course_registrations",
+  "info": {
+    "name": "course_registrations",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "career_level_code": {
+      "type": "string"
+    },
+    "emplid": {
+      "type": "biginteger"
+    },
+    "full_name": {
+      "type": "string"
+    },
+    "catalog_number": {
+      "type": "biginteger"
+    },
+    "subject_code": {
+      "type": "string"
+    },
+    "class_number": {
+      "type": "biginteger"
+    },
+    "class_title": {
+      "type": "string"
+    },
+    "academic_plan_code": {
+      "type": "string"
+    },
+    "academic_sub_plan_code": {
+      "type": "string"
+    },
+    "instructor_emplid": {
+      "type": "biginteger"
+    },
+    "primary_instructor_name": {
+      "type": "string"
+    },
+    "creator": {
+      "type": "string"
+    },
+    "updater": {
+      "type": "string"
+    }
+  }
+}

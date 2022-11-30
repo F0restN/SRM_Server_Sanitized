@@ -1,0 +1,195 @@
+{
+  "kind": "collectionType",
+  "collectionName": "students",
+  "info": {
+    "name": "Student",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "first_name": {
+      "type": "string"
+    },
+    "middle_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "peoplesoft_id": {
+      "type": "biginteger"
+    },
+    "email": {
+      "type": "email"
+    },
+    "advisor": {
+      "type": "string"
+    },
+    "program": {
+      "type": "string"
+    },
+    "track": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "graduation": {
+      "type": "string"
+    },
+    "network": {
+      "type": "json"
+    },
+    "note": {
+      "type": "json"
+    },
+    "enroll_date": {
+      "type": "date"
+    },
+    "attachment": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "admission_document": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files",
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "grade": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files",
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "start_term": {
+      "type": "string"
+    },
+    "expected_grad_term": {
+      "type": "string"
+    },
+    "plan_available": {
+      "type": "boolean",
+      "default": false
+    },
+    "actual_grad_term": {
+      "type": "string"
+    },
+    "start_year": {
+      "type": "integer"
+    },
+    "expected_grad_year": {
+      "type": "integer"
+    },
+    "actual_grad_year": {
+      "type": "integer"
+    },
+    "academic_plan_cd": {
+      "type": "string"
+    },
+    "academic_subplan_cd": {
+      "type": "string"
+    },
+    "enrollment_status": {
+      "type": "richtext"
+    },
+    "residency_description": {
+      "type": "richtext"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "admission_gpa": {
+      "type": "string"
+    },
+    "resume": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "admission_package": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "mailing_address": {
+      "type": "richtext"
+    },
+    "year_of_birth": {
+      "type": "integer"
+    },
+    "company": {
+      "type": "text"
+    },
+    "street": {
+      "type": "text"
+    },
+    "city": {
+      "type": "text"
+    },
+    "state": {
+      "type": "text"
+    },
+    "zipcode": {
+      "type": "integer"
+    },
+    "position": {
+      "type": "text"
+    },
+    "job_start_year": {
+      "type": "integer"
+    },
+    "undergrad_major": {
+      "type": "text"
+    },
+    "prev_grad_year": {
+      "type": "integer"
+    },
+    "prev_school": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "surveys",
+  "info": {
+    "name": "Survey"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "uid": {
+      "type": "uid"
+    },
+    "surveyJSON": {
+      "type": "json"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

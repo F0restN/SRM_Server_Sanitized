@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "advisors",
+  "info": {
+    "name": "Advisor",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "department": {
+      "type": "string"
+    },
+    "supervisor": {
+      "type": "string"
+    },
+    "advisee": {
+      "type": "json"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

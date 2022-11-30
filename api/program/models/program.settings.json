@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "programs",
+  "info": {
+    "name": "Program",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+      "name": {
+          "type": "enumeration",
+          "enum": [
+              "DS",
+              "HI",
+              "HSM",
+              "RHIA"
+          ]
+      },
+    "duration": {
+      "type": "integer"
+    },
+    "type": {
+      "type": "string"
+    },
+    "full_name": {
+      "type": "string"
+    }
+  }
+}

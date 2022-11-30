@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "students_courses",
+  "info": {
+    "name": "student courses",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "student_id": {
+      "type": "biginteger"
+    },
+    "course_id": {
+      "type": "biginteger"
+    },
+    "term": {
+      "type": "string"
+    },
+    "year": {
+      "type": "integer"
+    },
+    "deactivate": {
+      "type": "boolean"
+    },
+    "transaction_id": {
+      "type": "biginteger"
+    }
+  }
+}

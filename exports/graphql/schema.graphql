@@ -1,0 +1,2503 @@
+input FileInfoInput {
+  name: String
+  alternativeText: String
+  caption: String
+}
+
+type UsersPermissionsMe {
+  id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+input UsersPermissionsRegisterInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UsersPermissionsLoginInput {
+  identifier: String!
+  password: String!
+  provider: String = "local"
+}
+
+type UsersPermissionsLoginPayload {
+  jwt: String
+  user: UsersPermissionsMe!
+}
+
+type UserPermissionsPasswordPayload {
+  ok: Boolean!
+}
+
+type Advisor {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  department: String
+  supervisor: String
+  advisee: JSON
+  name: String
+}
+
+type AdvisorConnection {
+  values: [Advisor]
+  groupBy: AdvisorGroupBy
+  aggregate: AdvisorAggregator
+}
+
+type AdvisorAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type AdvisorGroupBy {
+  id: [AdvisorConnectionId]
+  created_at: [AdvisorConnectionCreated_at]
+  updated_at: [AdvisorConnectionUpdated_at]
+  department: [AdvisorConnectionDepartment]
+  supervisor: [AdvisorConnectionSupervisor]
+  advisee: [AdvisorConnectionAdvisee]
+  name: [AdvisorConnectionName]
+}
+
+type AdvisorConnectionId {
+  key: ID
+  connection: AdvisorConnection
+}
+
+type AdvisorConnectionCreated_at {
+  key: DateTime
+  connection: AdvisorConnection
+}
+
+type AdvisorConnectionUpdated_at {
+  key: DateTime
+  connection: AdvisorConnection
+}
+
+type AdvisorConnectionDepartment {
+  key: String
+  connection: AdvisorConnection
+}
+
+type AdvisorConnectionSupervisor {
+  key: String
+  connection: AdvisorConnection
+}
+
+type AdvisorConnectionAdvisee {
+  key: JSON
+  connection: AdvisorConnection
+}
+
+type AdvisorConnectionName {
+  key: String
+  connection: AdvisorConnection
+}
+
+input AdvisorInput {
+  department: String
+  supervisor: String
+  advisee: JSON
+  name: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editAdvisorInput {
+  department: String
+  supervisor: String
+  advisee: JSON
+  name: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createAdvisorInput {
+  data: AdvisorInput
+}
+
+type createAdvisorPayload {
+  advisor: Advisor
+}
+
+input updateAdvisorInput {
+  where: InputID
+  data: editAdvisorInput
+}
+
+type updateAdvisorPayload {
+  advisor: Advisor
+}
+
+input deleteAdvisorInput {
+  where: InputID
+}
+
+type deleteAdvisorPayload {
+  advisor: Advisor
+}
+
+type Alumni {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  advisor: String
+  track: String
+  grad_term: String
+  survey1: JSON
+  followup: JSON
+  peoplesoft_id: Long!
+  survey_status: Int
+  grad_year: Int
+  follow_status: Int
+  program_start_date: String
+  graduation_date: String
+  program: String
+  published_at: DateTime
+}
+
+type AlumniConnection {
+  values: [Alumni]
+  groupBy: AlumniGroupBy
+  aggregate: AlumniAggregator
+}
+
+type AlumniAggregator {
+  count: Int
+  totalCount: Int
+  sum: AlumniAggregatorSum
+  avg: AlumniAggregatorAvg
+  min: AlumniAggregatorMin
+  max: AlumniAggregatorMax
+}
+
+type AlumniAggregatorSum {
+  survey_status: Float
+  grad_year: Float
+  follow_status: Float
+}
+
+type AlumniAggregatorAvg {
+  survey_status: Float
+  grad_year: Float
+  follow_status: Float
+}
+
+type AlumniAggregatorMin {
+  survey_status: Float
+  grad_year: Float
+  follow_status: Float
+}
+
+type AlumniAggregatorMax {
+  survey_status: Float
+  grad_year: Float
+  follow_status: Float
+}
+
+type AlumniGroupBy {
+  id: [AlumniConnectionId]
+  created_at: [AlumniConnectionCreated_at]
+  updated_at: [AlumniConnectionUpdated_at]
+  name: [AlumniConnectionName]
+  advisor: [AlumniConnectionAdvisor]
+  track: [AlumniConnectionTrack]
+  grad_term: [AlumniConnectionGrad_term]
+  survey1: [AlumniConnectionSurvey1]
+  followup: [AlumniConnectionFollowup]
+  peoplesoft_id: [AlumniConnectionPeoplesoft_id]
+  survey_status: [AlumniConnectionSurvey_status]
+  grad_year: [AlumniConnectionGrad_year]
+  follow_status: [AlumniConnectionFollow_status]
+  program_start_date: [AlumniConnectionProgram_start_date]
+  graduation_date: [AlumniConnectionGraduation_date]
+  program: [AlumniConnectionProgram]
+  published_at: [AlumniConnectionPublished_at]
+}
+
+type AlumniConnectionId {
+  key: ID
+  connection: AlumniConnection
+}
+
+type AlumniConnectionCreated_at {
+  key: DateTime
+  connection: AlumniConnection
+}
+
+type AlumniConnectionUpdated_at {
+  key: DateTime
+  connection: AlumniConnection
+}
+
+type AlumniConnectionName {
+  key: String
+  connection: AlumniConnection
+}
+
+type AlumniConnectionAdvisor {
+  key: String
+  connection: AlumniConnection
+}
+
+type AlumniConnectionTrack {
+  key: String
+  connection: AlumniConnection
+}
+
+type AlumniConnectionGrad_term {
+  key: String
+  connection: AlumniConnection
+}
+
+type AlumniConnectionSurvey1 {
+  key: JSON
+  connection: AlumniConnection
+}
+
+type AlumniConnectionFollowup {
+  key: JSON
+  connection: AlumniConnection
+}
+
+type AlumniConnectionPeoplesoft_id {
+  key: ID
+  connection: AlumniConnection
+}
+
+type AlumniConnectionSurvey_status {
+  key: Int
+  connection: AlumniConnection
+}
+
+type AlumniConnectionGrad_year {
+  key: Int
+  connection: AlumniConnection
+}
+
+type AlumniConnectionFollow_status {
+  key: Int
+  connection: AlumniConnection
+}
+
+type AlumniConnectionProgram_start_date {
+  key: String
+  connection: AlumniConnection
+}
+
+type AlumniConnectionGraduation_date {
+  key: String
+  connection: AlumniConnection
+}
+
+type AlumniConnectionProgram {
+  key: String
+  connection: AlumniConnection
+}
+
+type AlumniConnectionPublished_at {
+  key: DateTime
+  connection: AlumniConnection
+}
+
+input AlumnusInput {
+  name: String
+  advisor: String
+  track: String
+  grad_term: String
+  survey1: JSON
+  followup: JSON
+  peoplesoft_id: Long!
+  survey_status: Int
+  grad_year: Int
+  follow_status: Int
+  program_start_date: String
+  graduation_date: String
+  program: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editAlumnusInput {
+  name: String
+  advisor: String
+  track: String
+  grad_term: String
+  survey1: JSON
+  followup: JSON
+  peoplesoft_id: Long
+  survey_status: Int
+  grad_year: Int
+  follow_status: Int
+  program_start_date: String
+  graduation_date: String
+  program: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createAlumnusInput {
+  data: AlumnusInput
+}
+
+type createAlumnusPayload {
+  alumnus: Alumni
+}
+
+input updateAlumnusInput {
+  where: InputID
+  data: editAlumnusInput
+}
+
+type updateAlumnusPayload {
+  alumnus: Alumni
+}
+
+input deleteAlumnusInput {
+  where: InputID
+}
+
+type deleteAlumnusPayload {
+  alumnus: Alumni
+}
+
+type CourseRegistration {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  career_level_code: String
+  emplid: Long
+  full_name: String
+  catalog_number: Long
+  subject_code: String
+  class_number: Long
+  class_title: String
+  academic_plan_code: String
+  academic_sub_plan_code: String
+  instructor_emplid: Long
+  primary_instructor_name: String
+  creator: String
+  updater: String
+}
+
+type CourseRegistrationConnection {
+  values: [CourseRegistration]
+  groupBy: CourseRegistrationGroupBy
+  aggregate: CourseRegistrationAggregator
+}
+
+type CourseRegistrationAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type CourseRegistrationGroupBy {
+  id: [CourseRegistrationConnectionId]
+  created_at: [CourseRegistrationConnectionCreated_at]
+  updated_at: [CourseRegistrationConnectionUpdated_at]
+  career_level_code: [CourseRegistrationConnectionCareer_level_code]
+  emplid: [CourseRegistrationConnectionEmplid]
+  full_name: [CourseRegistrationConnectionFull_name]
+  catalog_number: [CourseRegistrationConnectionCatalog_number]
+  subject_code: [CourseRegistrationConnectionSubject_code]
+  class_number: [CourseRegistrationConnectionClass_number]
+  class_title: [CourseRegistrationConnectionClass_title]
+  academic_plan_code: [CourseRegistrationConnectionAcademic_plan_code]
+  academic_sub_plan_code: [CourseRegistrationConnectionAcademic_sub_plan_code]
+  instructor_emplid: [CourseRegistrationConnectionInstructor_emplid]
+  primary_instructor_name: [CourseRegistrationConnectionPrimary_instructor_name]
+  creator: [CourseRegistrationConnectionCreator]
+  updater: [CourseRegistrationConnectionUpdater]
+}
+
+type CourseRegistrationConnectionId {
+  key: ID
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionCreated_at {
+  key: DateTime
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionUpdated_at {
+  key: DateTime
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionCareer_level_code {
+  key: String
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionEmplid {
+  key: ID
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionFull_name {
+  key: String
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionCatalog_number {
+  key: ID
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionSubject_code {
+  key: String
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionClass_number {
+  key: ID
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionClass_title {
+  key: String
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionAcademic_plan_code {
+  key: String
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionAcademic_sub_plan_code {
+  key: String
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionInstructor_emplid {
+  key: ID
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionPrimary_instructor_name {
+  key: String
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionCreator {
+  key: String
+  connection: CourseRegistrationConnection
+}
+
+type CourseRegistrationConnectionUpdater {
+  key: String
+  connection: CourseRegistrationConnection
+}
+
+input CourseRegistrationInput {
+  career_level_code: String
+  emplid: Long
+  full_name: String
+  catalog_number: Long
+  subject_code: String
+  class_number: Long
+  class_title: String
+  academic_plan_code: String
+  academic_sub_plan_code: String
+  instructor_emplid: Long
+  primary_instructor_name: String
+  creator: String
+  updater: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editCourseRegistrationInput {
+  career_level_code: String
+  emplid: Long
+  full_name: String
+  catalog_number: Long
+  subject_code: String
+  class_number: Long
+  class_title: String
+  academic_plan_code: String
+  academic_sub_plan_code: String
+  instructor_emplid: Long
+  primary_instructor_name: String
+  creator: String
+  updater: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createCourseRegistrationInput {
+  data: CourseRegistrationInput
+}
+
+type createCourseRegistrationPayload {
+  courseRegistration: CourseRegistration
+}
+
+input updateCourseRegistrationInput {
+  where: InputID
+  data: editCourseRegistrationInput
+}
+
+type updateCourseRegistrationPayload {
+  courseRegistration: CourseRegistration
+}
+
+input deleteCourseRegistrationInput {
+  where: InputID
+}
+
+type deleteCourseRegistrationPayload {
+  courseRegistration: CourseRegistration
+}
+
+enum ENUM_COURSE_DAY {
+  MON
+  TUE
+  WED
+  THR
+  FRI
+  SAT
+  SUN
+  INDEP
+  ANY
+}
+
+enum ENUM_COURSE_TYPE {
+  ONLINE
+  ONCMP
+}
+
+type Course {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  uid: Long!
+  course_id: Long
+  time: Time
+  day: ENUM_COURSE_DAY
+  instructor: String
+  tas: String
+  pre_req: String
+  credit: Int
+  term: String
+  course_name: String
+  prefix: String
+  start_year: Int
+  end_year: Int
+  type: ENUM_COURSE_TYPE
+}
+
+type CourseConnection {
+  values: [Course]
+  groupBy: CourseGroupBy
+  aggregate: CourseAggregator
+}
+
+type CourseAggregator {
+  count: Int
+  totalCount: Int
+  sum: CourseAggregatorSum
+  avg: CourseAggregatorAvg
+  min: CourseAggregatorMin
+  max: CourseAggregatorMax
+}
+
+type CourseAggregatorSum {
+  credit: Float
+  start_year: Float
+  end_year: Float
+}
+
+type CourseAggregatorAvg {
+  credit: Float
+  start_year: Float
+  end_year: Float
+}
+
+type CourseAggregatorMin {
+  credit: Float
+  start_year: Float
+  end_year: Float
+}
+
+type CourseAggregatorMax {
+  credit: Float
+  start_year: Float
+  end_year: Float
+}
+
+type CourseGroupBy {
+  id: [CourseConnectionId]
+  created_at: [CourseConnectionCreated_at]
+  updated_at: [CourseConnectionUpdated_at]
+  uid: [CourseConnectionUid]
+  course_id: [CourseConnectionCourse_id]
+  time: [CourseConnectionTime]
+  day: [CourseConnectionDay]
+  instructor: [CourseConnectionInstructor]
+  tas: [CourseConnectionTas]
+  pre_req: [CourseConnectionPre_req]
+  credit: [CourseConnectionCredit]
+  term: [CourseConnectionTerm]
+  course_name: [CourseConnectionCourse_name]
+  prefix: [CourseConnectionPrefix]
+  start_year: [CourseConnectionStart_year]
+  end_year: [CourseConnectionEnd_year]
+  type: [CourseConnectionType]
+}
+
+type CourseConnectionId {
+  key: ID
+  connection: CourseConnection
+}
+
+type CourseConnectionCreated_at {
+  key: DateTime
+  connection: CourseConnection
+}
+
+type CourseConnectionUpdated_at {
+  key: DateTime
+  connection: CourseConnection
+}
+
+type CourseConnectionUid {
+  key: ID
+  connection: CourseConnection
+}
+
+type CourseConnectionCourse_id {
+  key: ID
+  connection: CourseConnection
+}
+
+type CourseConnectionTime {
+  key: ID
+  connection: CourseConnection
+}
+
+type CourseConnectionDay {
+  key: String
+  connection: CourseConnection
+}
+
+type CourseConnectionInstructor {
+  key: String
+  connection: CourseConnection
+}
+
+type CourseConnectionTas {
+  key: String
+  connection: CourseConnection
+}
+
+type CourseConnectionPre_req {
+  key: String
+  connection: CourseConnection
+}
+
+type CourseConnectionCredit {
+  key: Int
+  connection: CourseConnection
+}
+
+type CourseConnectionTerm {
+  key: String
+  connection: CourseConnection
+}
+
+type CourseConnectionCourse_name {
+  key: String
+  connection: CourseConnection
+}
+
+type CourseConnectionPrefix {
+  key: String
+  connection: CourseConnection
+}
+
+type CourseConnectionStart_year {
+  key: Int
+  connection: CourseConnection
+}
+
+type CourseConnectionEnd_year {
+  key: Int
+  connection: CourseConnection
+}
+
+type CourseConnectionType {
+  key: String
+  connection: CourseConnection
+}
+
+input CourseInput {
+  uid: Long!
+  course_id: Long
+  time: Time
+  day: ENUM_COURSE_DAY
+  instructor: String
+  tas: String
+  pre_req: String
+  credit: Int
+  term: String
+  course_name: String
+  prefix: String
+  start_year: Int
+  end_year: Int
+  type: ENUM_COURSE_TYPE
+  created_by: ID
+  updated_by: ID
+}
+
+input editCourseInput {
+  uid: Long
+  course_id: Long
+  time: Time
+  day: ENUM_COURSE_DAY
+  instructor: String
+  tas: String
+  pre_req: String
+  credit: Int
+  term: String
+  course_name: String
+  prefix: String
+  start_year: Int
+  end_year: Int
+  type: ENUM_COURSE_TYPE
+  created_by: ID
+  updated_by: ID
+}
+
+input createCourseInput {
+  data: CourseInput
+}
+
+type createCoursePayload {
+  course: Course
+}
+
+input updateCourseInput {
+  where: InputID
+  data: editCourseInput
+}
+
+type updateCoursePayload {
+  course: Course
+}
+
+input deleteCourseInput {
+  where: InputID
+}
+
+type deleteCoursePayload {
+  course: Course
+}
+
+enum ENUM_PROGRAM_NAME {
+  DS
+  HI
+  HSM
+  RHIA
+}
+
+type Program {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: ENUM_PROGRAM_NAME
+  duration: Int
+  type: String
+  full_name: String
+  published_at: DateTime
+}
+
+type ProgramConnection {
+  values: [Program]
+  groupBy: ProgramGroupBy
+  aggregate: ProgramAggregator
+}
+
+type ProgramAggregator {
+  count: Int
+  totalCount: Int
+  sum: ProgramAggregatorSum
+  avg: ProgramAggregatorAvg
+  min: ProgramAggregatorMin
+  max: ProgramAggregatorMax
+}
+
+type ProgramAggregatorSum {
+  duration: Float
+}
+
+type ProgramAggregatorAvg {
+  duration: Float
+}
+
+type ProgramAggregatorMin {
+  duration: Float
+}
+
+type ProgramAggregatorMax {
+  duration: Float
+}
+
+type ProgramGroupBy {
+  id: [ProgramConnectionId]
+  created_at: [ProgramConnectionCreated_at]
+  updated_at: [ProgramConnectionUpdated_at]
+  name: [ProgramConnectionName]
+  duration: [ProgramConnectionDuration]
+  type: [ProgramConnectionType]
+  full_name: [ProgramConnectionFull_name]
+  published_at: [ProgramConnectionPublished_at]
+}
+
+type ProgramConnectionId {
+  key: ID
+  connection: ProgramConnection
+}
+
+type ProgramConnectionCreated_at {
+  key: DateTime
+  connection: ProgramConnection
+}
+
+type ProgramConnectionUpdated_at {
+  key: DateTime
+  connection: ProgramConnection
+}
+
+type ProgramConnectionName {
+  key: String
+  connection: ProgramConnection
+}
+
+type ProgramConnectionDuration {
+  key: Int
+  connection: ProgramConnection
+}
+
+type ProgramConnectionType {
+  key: String
+  connection: ProgramConnection
+}
+
+type ProgramConnectionFull_name {
+  key: String
+  connection: ProgramConnection
+}
+
+type ProgramConnectionPublished_at {
+  key: DateTime
+  connection: ProgramConnection
+}
+
+input ProgramInput {
+  name: ENUM_PROGRAM_NAME
+  duration: Int
+  type: String
+  full_name: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editProgramInput {
+  name: ENUM_PROGRAM_NAME
+  duration: Int
+  type: String
+  full_name: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createProgramInput {
+  data: ProgramInput
+}
+
+type createProgramPayload {
+  program: Program
+}
+
+input updateProgramInput {
+  where: InputID
+  data: editProgramInput
+}
+
+type updateProgramPayload {
+  program: Program
+}
+
+input deleteProgramInput {
+  where: InputID
+}
+
+type deleteProgramPayload {
+  program: Program
+}
+
+type Student {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  first_name: String
+  middle_name: String
+  last_name: String
+  name: String
+  peoplesoft_id: Long
+  email: String
+  advisor: String
+  program: String
+  track: String
+  status: String
+  type: String
+  graduation: String
+  network: JSON
+  note: JSON
+  enroll_date: Date
+  grade: UploadFile
+  start_term: String
+  expected_grad_term: String
+  plan_available: Boolean
+  actual_grad_term: String
+  start_year: Int
+  expected_grad_year: Int
+  actual_grad_year: Int
+  academic_plan_cd: String
+  academic_subplan_cd: String
+  enrollment_status: String
+  residency_description: String
+  gender: String
+  admission_gpa: String
+  resume: UploadFile
+  admission_package: UploadFile
+  mailing_address: String
+  year_of_birth: Int
+  company: String
+  street: String
+  city: String
+  state: String
+  zipcode: Int
+  position: String
+  job_start_year: Int
+  undergrad_major: String
+  prev_grad_year: Int
+  prev_school: String
+  attachment(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  admission_document(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+}
+
+type StudentConnection {
+  values: [Student]
+  groupBy: StudentGroupBy
+  aggregate: StudentAggregator
+}
+
+type StudentAggregator {
+  count: Int
+  totalCount: Int
+  sum: StudentAggregatorSum
+  avg: StudentAggregatorAvg
+  min: StudentAggregatorMin
+  max: StudentAggregatorMax
+}
+
+type StudentAggregatorSum {
+  start_year: Float
+  expected_grad_year: Float
+  actual_grad_year: Float
+  year_of_birth: Float
+  zipcode: Float
+  job_start_year: Float
+  prev_grad_year: Float
+}
+
+type StudentAggregatorAvg {
+  start_year: Float
+  expected_grad_year: Float
+  actual_grad_year: Float
+  year_of_birth: Float
+  zipcode: Float
+  job_start_year: Float
+  prev_grad_year: Float
+}
+
+type StudentAggregatorMin {
+  start_year: Float
+  expected_grad_year: Float
+  actual_grad_year: Float
+  year_of_birth: Float
+  zipcode: Float
+  job_start_year: Float
+  prev_grad_year: Float
+}
+
+type StudentAggregatorMax {
+  start_year: Float
+  expected_grad_year: Float
+  actual_grad_year: Float
+  year_of_birth: Float
+  zipcode: Float
+  job_start_year: Float
+  prev_grad_year: Float
+}
+
+type StudentGroupBy {
+  id: [StudentConnectionId]
+  created_at: [StudentConnectionCreated_at]
+  updated_at: [StudentConnectionUpdated_at]
+  first_name: [StudentConnectionFirst_name]
+  middle_name: [StudentConnectionMiddle_name]
+  last_name: [StudentConnectionLast_name]
+  name: [StudentConnectionName]
+  peoplesoft_id: [StudentConnectionPeoplesoft_id]
+  email: [StudentConnectionEmail]
+  advisor: [StudentConnectionAdvisor]
+  program: [StudentConnectionProgram]
+  track: [StudentConnectionTrack]
+  status: [StudentConnectionStatus]
+  type: [StudentConnectionType]
+  graduation: [StudentConnectionGraduation]
+  network: [StudentConnectionNetwork]
+  note: [StudentConnectionNote]
+  enroll_date: [StudentConnectionEnroll_date]
+  grade: [StudentConnectionGrade]
+  start_term: [StudentConnectionStart_term]
+  expected_grad_term: [StudentConnectionExpected_grad_term]
+  plan_available: [StudentConnectionPlan_available]
+  actual_grad_term: [StudentConnectionActual_grad_term]
+  start_year: [StudentConnectionStart_year]
+  expected_grad_year: [StudentConnectionExpected_grad_year]
+  actual_grad_year: [StudentConnectionActual_grad_year]
+  academic_plan_cd: [StudentConnectionAcademic_plan_cd]
+  academic_subplan_cd: [StudentConnectionAcademic_subplan_cd]
+  enrollment_status: [StudentConnectionEnrollment_status]
+  residency_description: [StudentConnectionResidency_description]
+  gender: [StudentConnectionGender]
+  admission_gpa: [StudentConnectionAdmission_gpa]
+  resume: [StudentConnectionResume]
+  admission_package: [StudentConnectionAdmission_package]
+  mailing_address: [StudentConnectionMailing_address]
+  year_of_birth: [StudentConnectionYear_of_birth]
+  company: [StudentConnectionCompany]
+  street: [StudentConnectionStreet]
+  city: [StudentConnectionCity]
+  state: [StudentConnectionState]
+  zipcode: [StudentConnectionZipcode]
+  position: [StudentConnectionPosition]
+  job_start_year: [StudentConnectionJob_start_year]
+  undergrad_major: [StudentConnectionUndergrad_major]
+  prev_grad_year: [StudentConnectionPrev_grad_year]
+  prev_school: [StudentConnectionPrev_school]
+}
+
+type StudentConnectionId {
+  key: ID
+  connection: StudentConnection
+}
+
+type StudentConnectionCreated_at {
+  key: DateTime
+  connection: StudentConnection
+}
+
+type StudentConnectionUpdated_at {
+  key: DateTime
+  connection: StudentConnection
+}
+
+type StudentConnectionFirst_name {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionMiddle_name {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionLast_name {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionName {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionPeoplesoft_id {
+  key: ID
+  connection: StudentConnection
+}
+
+type StudentConnectionEmail {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionAdvisor {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionProgram {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionTrack {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionStatus {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionType {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionGraduation {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionNetwork {
+  key: JSON
+  connection: StudentConnection
+}
+
+type StudentConnectionNote {
+  key: JSON
+  connection: StudentConnection
+}
+
+type StudentConnectionEnroll_date {
+  key: ID
+  connection: StudentConnection
+}
+
+type StudentConnectionGrade {
+  key: ID
+  connection: StudentConnection
+}
+
+type StudentConnectionStart_term {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionExpected_grad_term {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionPlan_available {
+  key: Boolean
+  connection: StudentConnection
+}
+
+type StudentConnectionActual_grad_term {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionStart_year {
+  key: Int
+  connection: StudentConnection
+}
+
+type StudentConnectionExpected_grad_year {
+  key: Int
+  connection: StudentConnection
+}
+
+type StudentConnectionActual_grad_year {
+  key: Int
+  connection: StudentConnection
+}
+
+type StudentConnectionAcademic_plan_cd {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionAcademic_subplan_cd {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionEnrollment_status {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionResidency_description {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionGender {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionAdmission_gpa {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionResume {
+  key: ID
+  connection: StudentConnection
+}
+
+type StudentConnectionAdmission_package {
+  key: ID
+  connection: StudentConnection
+}
+
+type StudentConnectionMailing_address {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionYear_of_birth {
+  key: Int
+  connection: StudentConnection
+}
+
+type StudentConnectionCompany {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionStreet {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionCity {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionState {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionZipcode {
+  key: Int
+  connection: StudentConnection
+}
+
+type StudentConnectionPosition {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionJob_start_year {
+  key: Int
+  connection: StudentConnection
+}
+
+type StudentConnectionUndergrad_major {
+  key: String
+  connection: StudentConnection
+}
+
+type StudentConnectionPrev_grad_year {
+  key: Int
+  connection: StudentConnection
+}
+
+type StudentConnectionPrev_school {
+  key: String
+  connection: StudentConnection
+}
+
+input StudentInput {
+  first_name: String
+  middle_name: String
+  last_name: String
+  name: String
+  peoplesoft_id: Long
+  email: String
+  advisor: String
+  program: String
+  track: String
+  status: String
+  type: String
+  graduation: String
+  network: JSON
+  note: JSON
+  enroll_date: Date
+  attachment: [ID]
+  admission_document: [ID]
+  grade: ID
+  start_term: String
+  expected_grad_term: String
+  plan_available: Boolean
+  actual_grad_term: String
+  start_year: Int
+  expected_grad_year: Int
+  actual_grad_year: Int
+  academic_plan_cd: String
+  academic_subplan_cd: String
+  enrollment_status: String
+  residency_description: String
+  gender: String
+  admission_gpa: String
+  resume: ID
+  admission_package: ID
+  mailing_address: String
+  year_of_birth: Int
+  company: String
+  street: String
+  city: String
+  state: String
+  zipcode: Int
+  position: String
+  job_start_year: Int
+  undergrad_major: String
+  prev_grad_year: Int
+  prev_school: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editStudentInput {
+  first_name: String
+  middle_name: String
+  last_name: String
+  name: String
+  peoplesoft_id: Long
+  email: String
+  advisor: String
+  program: String
+  track: String
+  status: String
+  type: String
+  graduation: String
+  network: JSON
+  note: JSON
+  enroll_date: Date
+  attachment: [ID]
+  admission_document: [ID]
+  grade: ID
+  start_term: String
+  expected_grad_term: String
+  plan_available: Boolean
+  actual_grad_term: String
+  start_year: Int
+  expected_grad_year: Int
+  actual_grad_year: Int
+  academic_plan_cd: String
+  academic_subplan_cd: String
+  enrollment_status: String
+  residency_description: String
+  gender: String
+  admission_gpa: String
+  resume: ID
+  admission_package: ID
+  mailing_address: String
+  year_of_birth: Int
+  company: String
+  street: String
+  city: String
+  state: String
+  zipcode: Int
+  position: String
+  job_start_year: Int
+  undergrad_major: String
+  prev_grad_year: Int
+  prev_school: String
+  created_by: ID
+  updated_by: ID
+}
+
+input createStudentInput {
+  data: StudentInput
+}
+
+type createStudentPayload {
+  student: Student
+}
+
+input updateStudentInput {
+  where: InputID
+  data: editStudentInput
+}
+
+type updateStudentPayload {
+  student: Student
+}
+
+input deleteStudentInput {
+  where: InputID
+}
+
+type deleteStudentPayload {
+  student: Student
+}
+
+type StudentsCourses {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  student_id: Long
+  course_id: Long
+  term: String
+  year: Int
+  deactivate: Boolean
+  transaction_id: Long
+}
+
+type StudentsCoursesConnection {
+  values: [StudentsCourses]
+  groupBy: StudentsCoursesGroupBy
+  aggregate: StudentsCoursesAggregator
+}
+
+type StudentsCoursesAggregator {
+  count: Int
+  totalCount: Int
+  sum: StudentsCoursesAggregatorSum
+  avg: StudentsCoursesAggregatorAvg
+  min: StudentsCoursesAggregatorMin
+  max: StudentsCoursesAggregatorMax
+}
+
+type StudentsCoursesAggregatorSum {
+  year: Float
+}
+
+type StudentsCoursesAggregatorAvg {
+  year: Float
+}
+
+type StudentsCoursesAggregatorMin {
+  year: Float
+}
+
+type StudentsCoursesAggregatorMax {
+  year: Float
+}
+
+type StudentsCoursesGroupBy {
+  id: [StudentsCoursesConnectionId]
+  created_at: [StudentsCoursesConnectionCreated_at]
+  updated_at: [StudentsCoursesConnectionUpdated_at]
+  student_id: [StudentsCoursesConnectionStudent_id]
+  course_id: [StudentsCoursesConnectionCourse_id]
+  term: [StudentsCoursesConnectionTerm]
+  year: [StudentsCoursesConnectionYear]
+  deactivate: [StudentsCoursesConnectionDeactivate]
+  transaction_id: [StudentsCoursesConnectionTransaction_id]
+}
+
+type StudentsCoursesConnectionId {
+  key: ID
+  connection: StudentsCoursesConnection
+}
+
+type StudentsCoursesConnectionCreated_at {
+  key: DateTime
+  connection: StudentsCoursesConnection
+}
+
+type StudentsCoursesConnectionUpdated_at {
+  key: DateTime
+  connection: StudentsCoursesConnection
+}
+
+type StudentsCoursesConnectionStudent_id {
+  key: ID
+  connection: StudentsCoursesConnection
+}
+
+type StudentsCoursesConnectionCourse_id {
+  key: ID
+  connection: StudentsCoursesConnection
+}
+
+type StudentsCoursesConnectionTerm {
+  key: String
+  connection: StudentsCoursesConnection
+}
+
+type StudentsCoursesConnectionYear {
+  key: Int
+  connection: StudentsCoursesConnection
+}
+
+type StudentsCoursesConnectionDeactivate {
+  key: Boolean
+  connection: StudentsCoursesConnection
+}
+
+type StudentsCoursesConnectionTransaction_id {
+  key: ID
+  connection: StudentsCoursesConnection
+}
+
+input StudentsCourseInput {
+  student_id: Long
+  course_id: Long
+  term: String
+  year: Int
+  deactivate: Boolean
+  transaction_id: Long
+  created_by: ID
+  updated_by: ID
+}
+
+input editStudentsCourseInput {
+  student_id: Long
+  course_id: Long
+  term: String
+  year: Int
+  deactivate: Boolean
+  transaction_id: Long
+  created_by: ID
+  updated_by: ID
+}
+
+input createStudentsCourseInput {
+  data: StudentsCourseInput
+}
+
+type createStudentsCoursePayload {
+  studentsCourse: StudentsCourses
+}
+
+input updateStudentsCourseInput {
+  where: InputID
+  data: editStudentsCourseInput
+}
+
+type updateStudentsCoursePayload {
+  studentsCourse: StudentsCourses
+}
+
+input deleteStudentsCourseInput {
+  where: InputID
+}
+
+type deleteStudentsCoursePayload {
+  studentsCourse: StudentsCourses
+}
+
+type Survey {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  uid: String
+  surveyJSON: JSON
+  name: String
+  published_at: DateTime
+}
+
+type SurveyConnection {
+  values: [Survey]
+  groupBy: SurveyGroupBy
+  aggregate: SurveyAggregator
+}
+
+type SurveyAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type SurveyGroupBy {
+  id: [SurveyConnectionId]
+  created_at: [SurveyConnectionCreated_at]
+  updated_at: [SurveyConnectionUpdated_at]
+  uid: [SurveyConnectionUid]
+  surveyJSON: [SurveyConnectionSurveyJSON]
+  name: [SurveyConnectionName]
+  published_at: [SurveyConnectionPublished_at]
+}
+
+type SurveyConnectionId {
+  key: ID
+  connection: SurveyConnection
+}
+
+type SurveyConnectionCreated_at {
+  key: DateTime
+  connection: SurveyConnection
+}
+
+type SurveyConnectionUpdated_at {
+  key: DateTime
+  connection: SurveyConnection
+}
+
+type SurveyConnectionUid {
+  key: String
+  connection: SurveyConnection
+}
+
+type SurveyConnectionSurveyJSON {
+  key: JSON
+  connection: SurveyConnection
+}
+
+type SurveyConnectionName {
+  key: String
+  connection: SurveyConnection
+}
+
+type SurveyConnectionPublished_at {
+  key: DateTime
+  connection: SurveyConnection
+}
+
+input SurveyInput {
+  uid: String
+  surveyJSON: JSON
+  name: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editSurveyInput {
+  uid: String
+  surveyJSON: JSON
+  name: String
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createSurveyInput {
+  data: SurveyInput
+}
+
+type createSurveyPayload {
+  survey: Survey
+}
+
+input updateSurveyInput {
+  where: InputID
+  data: editSurveyInput
+}
+
+type updateSurveyPayload {
+  survey: Survey
+}
+
+input deleteSurveyInput {
+  where: InputID
+}
+
+type deleteSurveyPayload {
+  survey: Survey
+}
+
+enum ENUM_TEMPLATES_STUDENT_STATUS {
+  PT
+  FT
+}
+
+enum ENUM_TEMPLATES_STUDENT_TYPE {
+  ONLINE
+  ONCMP
+}
+
+type Templates {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  term: String
+  program: String
+  courses: JSON
+  year: Int
+  student_status: ENUM_TEMPLATES_STUDENT_STATUS
+  student_type: ENUM_TEMPLATES_STUDENT_TYPE
+  published_at: DateTime
+}
+
+type TemplatesConnection {
+  values: [Templates]
+  groupBy: TemplatesGroupBy
+  aggregate: TemplatesAggregator
+}
+
+type TemplatesAggregator {
+  count: Int
+  totalCount: Int
+  sum: TemplatesAggregatorSum
+  avg: TemplatesAggregatorAvg
+  min: TemplatesAggregatorMin
+  max: TemplatesAggregatorMax
+}
+
+type TemplatesAggregatorSum {
+  year: Float
+}
+
+type TemplatesAggregatorAvg {
+  year: Float
+}
+
+type TemplatesAggregatorMin {
+  year: Float
+}
+
+type TemplatesAggregatorMax {
+  year: Float
+}
+
+type TemplatesGroupBy {
+  id: [TemplatesConnectionId]
+  created_at: [TemplatesConnectionCreated_at]
+  updated_at: [TemplatesConnectionUpdated_at]
+  term: [TemplatesConnectionTerm]
+  program: [TemplatesConnectionProgram]
+  courses: [TemplatesConnectionCourses]
+  year: [TemplatesConnectionYear]
+  student_status: [TemplatesConnectionStudent_status]
+  student_type: [TemplatesConnectionStudent_type]
+  published_at: [TemplatesConnectionPublished_at]
+}
+
+type TemplatesConnectionId {
+  key: ID
+  connection: TemplatesConnection
+}
+
+type TemplatesConnectionCreated_at {
+  key: DateTime
+  connection: TemplatesConnection
+}
+
+type TemplatesConnectionUpdated_at {
+  key: DateTime
+  connection: TemplatesConnection
+}
+
+type TemplatesConnectionTerm {
+  key: String
+  connection: TemplatesConnection
+}
+
+type TemplatesConnectionProgram {
+  key: String
+  connection: TemplatesConnection
+}
+
+type TemplatesConnectionCourses {
+  key: JSON
+  connection: TemplatesConnection
+}
+
+type TemplatesConnectionYear {
+  key: Int
+  connection: TemplatesConnection
+}
+
+type TemplatesConnectionStudent_status {
+  key: String
+  connection: TemplatesConnection
+}
+
+type TemplatesConnectionStudent_type {
+  key: String
+  connection: TemplatesConnection
+}
+
+type TemplatesConnectionPublished_at {
+  key: DateTime
+  connection: TemplatesConnection
+}
+
+input TemplateInput {
+  term: String
+  program: String
+  courses: JSON
+  year: Int
+  student_status: ENUM_TEMPLATES_STUDENT_STATUS
+  student_type: ENUM_TEMPLATES_STUDENT_TYPE
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input editTemplateInput {
+  term: String
+  program: String
+  courses: JSON
+  year: Int
+  student_status: ENUM_TEMPLATES_STUDENT_STATUS
+  student_type: ENUM_TEMPLATES_STUDENT_TYPE
+  published_at: DateTime
+  created_by: ID
+  updated_by: ID
+}
+
+input createTemplateInput {
+  data: TemplateInput
+}
+
+type createTemplatePayload {
+  template: Templates
+}
+
+input updateTemplateInput {
+  where: InputID
+  data: editTemplateInput
+}
+
+type updateTemplatePayload {
+  template: Templates
+}
+
+input deleteTemplateInput {
+  where: InputID
+}
+
+type deleteTemplatePayload {
+  template: Templates
+}
+
+type I18NLocale {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  code: String
+}
+
+input LocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+
+input editLocaleInput {
+  name: String
+  code: String
+  created_by: ID
+  updated_by: ID
+}
+
+type UploadFile {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileAggregator {
+  count: Int
+  totalCount: Int
+  sum: UploadFileAggregatorSum
+  avg: UploadFileAggregatorAvg
+  min: UploadFileAggregatorMin
+  max: UploadFileAggregatorMax
+}
+
+type UploadFileAggregatorSum {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorAvg {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMin {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileAggregatorMax {
+  width: Float
+  height: Float
+  size: Float
+}
+
+type UploadFileGroupBy {
+  id: [UploadFileConnectionId]
+  created_at: [UploadFileConnectionCreated_at]
+  updated_at: [UploadFileConnectionUpdated_at]
+  name: [UploadFileConnectionName]
+  alternativeText: [UploadFileConnectionAlternativeText]
+  caption: [UploadFileConnectionCaption]
+  width: [UploadFileConnectionWidth]
+  height: [UploadFileConnectionHeight]
+  formats: [UploadFileConnectionFormats]
+  hash: [UploadFileConnectionHash]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  previewUrl: [UploadFileConnectionPreviewUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
+}
+
+type UploadFileConnectionId {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionAlternativeText {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCaption {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionWidth {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHeight {
+  key: Int
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionFormats {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: Float
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionPreviewUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider_metadata {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+input FileInput {
+  name: String!
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String!
+  ext: String
+  mime: String!
+  size: Float!
+  url: String!
+  previewUrl: String
+  provider: String!
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editFileInput {
+  name: String
+  alternativeText: String
+  caption: String
+  width: Int
+  height: Int
+  formats: JSON
+  hash: String
+  ext: String
+  mime: String
+  size: Float
+  url: String
+  previewUrl: String
+  provider: String
+  provider_metadata: JSON
+  related: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input deleteFileInput {
+  where: InputID
+}
+
+type deleteFilePayload {
+  file: UploadFile
+}
+
+type UsersPermissionsPermission {
+  id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleGroupBy {
+  id: [UsersPermissionsRoleConnectionId]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsRoleConnectionId {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+  created_by: ID
+  updated_by: ID
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUser {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsUserGroupBy {
+  id: [UsersPermissionsUserConnectionId]
+  created_at: [UsersPermissionsUserConnectionCreated_at]
+  updated_at: [UsersPermissionsUserConnectionUpdated_at]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
+}
+
+type UsersPermissionsUserConnectionId {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCreated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUpdated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmationToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  created_by: ID
+  updated_by: ID
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Advisor | AdvisorConnection | AdvisorAggregator | AdvisorGroupBy | AdvisorConnectionId | AdvisorConnectionCreated_at | AdvisorConnectionUpdated_at | AdvisorConnectionDepartment | AdvisorConnectionSupervisor | AdvisorConnectionAdvisee | AdvisorConnectionName | createAdvisorPayload | updateAdvisorPayload | deleteAdvisorPayload | Alumni | AlumniConnection | AlumniAggregator | AlumniAggregatorSum | AlumniAggregatorAvg | AlumniAggregatorMin | AlumniAggregatorMax | AlumniGroupBy | AlumniConnectionId | AlumniConnectionCreated_at | AlumniConnectionUpdated_at | AlumniConnectionName | AlumniConnectionAdvisor | AlumniConnectionTrack | AlumniConnectionGrad_term | AlumniConnectionSurvey1 | AlumniConnectionFollowup | AlumniConnectionPeoplesoft_id | AlumniConnectionSurvey_status | AlumniConnectionGrad_year | AlumniConnectionFollow_status | AlumniConnectionProgram_start_date | AlumniConnectionGraduation_date | AlumniConnectionProgram | AlumniConnectionPublished_at | createAlumnusPayload | updateAlumnusPayload | deleteAlumnusPayload | CourseRegistration | CourseRegistrationConnection | CourseRegistrationAggregator | CourseRegistrationGroupBy | CourseRegistrationConnectionId | CourseRegistrationConnectionCreated_at | CourseRegistrationConnectionUpdated_at | CourseRegistrationConnectionCareer_level_code | CourseRegistrationConnectionEmplid | CourseRegistrationConnectionFull_name | CourseRegistrationConnectionCatalog_number | CourseRegistrationConnectionSubject_code | CourseRegistrationConnectionClass_number | CourseRegistrationConnectionClass_title | CourseRegistrationConnectionAcademic_plan_code | CourseRegistrationConnectionAcademic_sub_plan_code | CourseRegistrationConnectionInstructor_emplid | CourseRegistrationConnectionPrimary_instructor_name | CourseRegistrationConnectionCreator | CourseRegistrationConnectionUpdater | createCourseRegistrationPayload | updateCourseRegistrationPayload | deleteCourseRegistrationPayload | Course | CourseConnection | CourseAggregator | CourseAggregatorSum | CourseAggregatorAvg | CourseAggregatorMin | CourseAggregatorMax | CourseGroupBy | CourseConnectionId | CourseConnectionCreated_at | CourseConnectionUpdated_at | CourseConnectionUid | CourseConnectionCourse_id | CourseConnectionTime | CourseConnectionDay | CourseConnectionInstructor | CourseConnectionTas | CourseConnectionPre_req | CourseConnectionCredit | CourseConnectionTerm | CourseConnectionCourse_name | CourseConnectionPrefix | CourseConnectionStart_year | CourseConnectionEnd_year | CourseConnectionType | createCoursePayload | updateCoursePayload | deleteCoursePayload | Program | ProgramConnection | ProgramAggregator | ProgramAggregatorSum | ProgramAggregatorAvg | ProgramAggregatorMin | ProgramAggregatorMax | ProgramGroupBy | ProgramConnectionId | ProgramConnectionCreated_at | ProgramConnectionUpdated_at | ProgramConnectionName | ProgramConnectionDuration | ProgramConnectionType | ProgramConnectionFull_name | ProgramConnectionPublished_at | createProgramPayload | updateProgramPayload | deleteProgramPayload | Student | StudentConnection | StudentAggregator | StudentAggregatorSum | StudentAggregatorAvg | StudentAggregatorMin | StudentAggregatorMax | StudentGroupBy | StudentConnectionId | StudentConnectionCreated_at | StudentConnectionUpdated_at | StudentConnectionFirst_name | StudentConnectionMiddle_name | StudentConnectionLast_name | StudentConnectionName | StudentConnectionPeoplesoft_id | StudentConnectionEmail | StudentConnectionAdvisor | StudentConnectionProgram | StudentConnectionTrack | StudentConnectionStatus | StudentConnectionType | StudentConnectionGraduation | StudentConnectionNetwork | StudentConnectionNote | StudentConnectionEnroll_date | StudentConnectionGrade | StudentConnectionStart_term | StudentConnectionExpected_grad_term | StudentConnectionPlan_available | StudentConnectionActual_grad_term | StudentConnectionStart_year | StudentConnectionExpected_grad_year | StudentConnectionActual_grad_year | StudentConnectionAcademic_plan_cd | StudentConnectionAcademic_subplan_cd | StudentConnectionEnrollment_status | StudentConnectionResidency_description | StudentConnectionGender | StudentConnectionAdmission_gpa | StudentConnectionResume | StudentConnectionAdmission_package | StudentConnectionMailing_address | StudentConnectionYear_of_birth | StudentConnectionCompany | StudentConnectionStreet | StudentConnectionCity | StudentConnectionState | StudentConnectionZipcode | StudentConnectionPosition | StudentConnectionJob_start_year | StudentConnectionUndergrad_major | StudentConnectionPrev_grad_year | StudentConnectionPrev_school | createStudentPayload | updateStudentPayload | deleteStudentPayload | StudentsCourses | StudentsCoursesConnection | StudentsCoursesAggregator | StudentsCoursesAggregatorSum | StudentsCoursesAggregatorAvg | StudentsCoursesAggregatorMin | StudentsCoursesAggregatorMax | StudentsCoursesGroupBy | StudentsCoursesConnectionId | StudentsCoursesConnectionCreated_at | StudentsCoursesConnectionUpdated_at | StudentsCoursesConnectionStudent_id | StudentsCoursesConnectionCourse_id | StudentsCoursesConnectionTerm | StudentsCoursesConnectionYear | StudentsCoursesConnectionDeactivate | StudentsCoursesConnectionTransaction_id | createStudentsCoursePayload | updateStudentsCoursePayload | deleteStudentsCoursePayload | Survey | SurveyConnection | SurveyAggregator | SurveyGroupBy | SurveyConnectionId | SurveyConnectionCreated_at | SurveyConnectionUpdated_at | SurveyConnectionUid | SurveyConnectionSurveyJSON | SurveyConnectionName | SurveyConnectionPublished_at | createSurveyPayload | updateSurveyPayload | deleteSurveyPayload | Templates | TemplatesConnection | TemplatesAggregator | TemplatesAggregatorSum | TemplatesAggregatorAvg | TemplatesAggregatorMin | TemplatesAggregatorMax | TemplatesGroupBy | TemplatesConnectionId | TemplatesConnectionCreated_at | TemplatesConnectionUpdated_at | TemplatesConnectionTerm | TemplatesConnectionProgram | TemplatesConnectionCourses | TemplatesConnectionYear | TemplatesConnectionStudent_status | TemplatesConnectionStudent_type | TemplatesConnectionPublished_at | createTemplatePayload | updateTemplatePayload | deleteTemplatePayload | I18NLocale | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload
+
+input InputID {
+  id: ID!
+}
+
+enum PublicationState {
+  LIVE
+  PREVIEW
+}
+
+type AdminUser {
+  id: ID!
+  username: String
+  firstname: String!
+  lastname: String!
+}
+
+type Query {
+  advisor(id: ID!, publicationState: PublicationState): Advisor
+  advisors(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Advisor]
+  advisorsConnection(sort: String, limit: Int, start: Int, where: JSON): AdvisorConnection
+  alumnus(id: ID!, publicationState: PublicationState): Alumni
+  alumni(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Alumni]
+  alumniConnection(sort: String, limit: Int, start: Int, where: JSON): AlumniConnection
+  courseRegistration(id: ID!, publicationState: PublicationState): CourseRegistration
+  courseRegistrations(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [CourseRegistration]
+  courseRegistrationsConnection(sort: String, limit: Int, start: Int, where: JSON): CourseRegistrationConnection
+  course(id: ID!, publicationState: PublicationState): Course
+  courses(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Course]
+  coursesConnection(sort: String, limit: Int, start: Int, where: JSON): CourseConnection
+  program(id: ID!, publicationState: PublicationState): Program
+  programs(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Program]
+  programsConnection(sort: String, limit: Int, start: Int, where: JSON): ProgramConnection
+  student(id: ID!, publicationState: PublicationState): Student
+  students(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Student]
+  studentsConnection(sort: String, limit: Int, start: Int, where: JSON): StudentConnection
+  studentsCourse(id: ID!, publicationState: PublicationState): StudentsCourses
+  studentsCourses(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [StudentsCourses]
+  studentsCoursesConnection(sort: String, limit: Int, start: Int, where: JSON): StudentsCoursesConnection
+  survey(id: ID!, publicationState: PublicationState): Survey
+  surveys(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Survey]
+  surveysConnection(sort: String, limit: Int, start: Int, where: JSON): SurveyConnection
+  template(id: ID!, publicationState: PublicationState): Templates
+  templates(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [Templates]
+  templatesConnection(sort: String, limit: Int, start: Int, where: JSON): TemplatesConnection
+  files(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!, publicationState: PublicationState): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!, publicationState: PublicationState): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON, publicationState: PublicationState): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+  me: UsersPermissionsMe
+}
+
+type Mutation {
+  createAdvisor(input: createAdvisorInput): createAdvisorPayload
+  updateAdvisor(input: updateAdvisorInput): updateAdvisorPayload
+  deleteAdvisor(input: deleteAdvisorInput): deleteAdvisorPayload
+  createAlumnus(input: createAlumnusInput): createAlumnusPayload
+  updateAlumnus(input: updateAlumnusInput): updateAlumnusPayload
+  deleteAlumnus(input: deleteAlumnusInput): deleteAlumnusPayload
+  createCourseRegistration(input: createCourseRegistrationInput): createCourseRegistrationPayload
+  updateCourseRegistration(input: updateCourseRegistrationInput): updateCourseRegistrationPayload
+  deleteCourseRegistration(input: deleteCourseRegistrationInput): deleteCourseRegistrationPayload
+  createCourse(input: createCourseInput): createCoursePayload
+  updateCourse(input: updateCourseInput): updateCoursePayload
+  deleteCourse(input: deleteCourseInput): deleteCoursePayload
+  createProgram(input: createProgramInput): createProgramPayload
+  updateProgram(input: updateProgramInput): updateProgramPayload
+  deleteProgram(input: deleteProgramInput): deleteProgramPayload
+  createStudent(input: createStudentInput): createStudentPayload
+  updateStudent(input: updateStudentInput): updateStudentPayload
+  deleteStudent(input: deleteStudentInput): deleteStudentPayload
+  createStudentsCourse(input: createStudentsCourseInput): createStudentsCoursePayload
+  updateStudentsCourse(input: updateStudentsCourseInput): updateStudentsCoursePayload
+  deleteStudentsCourse(input: deleteStudentsCourseInput): deleteStudentsCoursePayload
+  createSurvey(input: createSurveyInput): createSurveyPayload
+  updateSurvey(input: updateSurveyInput): updateSurveyPayload
+  deleteSurvey(input: deleteSurveyInput): deleteSurveyPayload
+  createTemplate(input: createTemplateInput): createTemplatePayload
+  updateTemplate(input: updateTemplateInput): updateTemplatePayload
+  deleteTemplate(input: deleteTemplateInput): deleteTemplatePayload
+
+  """Delete one file"""
+  deleteFile(input: deleteFileInput): deleteFilePayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, field: String, source: String, info: FileInfoInput, file: Upload!): UploadFile!
+  multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
+  updateFileInfo(id: ID!, info: FileInfoInput!): UploadFile!
+  login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
+  register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
+  forgotPassword(email: String!): UserPermissionsPasswordPayload
+  resetPassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+"""A time string with format: HH:mm:ss.SSS"""
+scalar Time
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+"""The `Long` scalar type represents 52-bit integers"""
+scalar Long
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload

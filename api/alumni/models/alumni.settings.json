@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "alumni",
+  "info": {
+    "name": "Alumni",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "advisor": {
+      "type": "string"
+    },
+    "track": {
+      "type": "string"
+    },
+    "grad_term": {
+      "type": "string"
+    },
+    "survey1": {
+      "type": "json"
+    },
+    "followup": {
+      "type": "json"
+    },
+    "peoplesoft_id": {
+      "type": "biginteger",
+      "unique": true,
+      "required": true
+    },
+
+    "survey_status": {
+      "type": "integer",
+      "default": 0
+    },
+    "grad_year": {
+      "type": "integer"
+    },
+    "follow_status": {
+      "type": "integer",
+      "default": 0
+    },
+
+    "program_start_date": {
+      "type": "string"
+    },
+    "graduation_date": {
+      "type": "string"
+    },
+    "program": {
+      "type": "string"
+
+
+    }
+  }
+}
